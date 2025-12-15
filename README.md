@@ -1,217 +1,177 @@
-```md
 # Pilot (FiveM)
 
-Pilot is a standalone FiveM self-driving / autopilot system with role profiles (civilian, police, EMS, taxi), adaptive speed, basic obstacle sensing, waypoint/route navigation, convoy following, and pull-over / park controls.
+Pilot is a standalone FiveM self-driving / autopilot system with role profiles (civilian, police, EMS, taxi), adaptive speed, obstacle sensing, waypoint/route navigation, convoy following, and pull-over / park controls.
 
-> **Status: HEAVY BETA**
->
-> Pilot is under active development. Behavior, commands, and tuning may change, and some edge cases may still be rough.
->
-> Planned upgrades include: smarter intersection handling, real overtake logic, better pathing/repathing, optional NUI menu, and more role-specific behaviors.
+> Status: HEAVY BETA  
+> Pilot is under active development. Behavior, commands, and tuning may change, and some edge cases may still be rough.  
+> Planned upgrades include smarter intersection handling, real overtake logic, better pathing/repathing, optional NUI menu, and deeper role behaviors.
+
+---
+
+## Features
+
+- Role profiles: civilian, police (patrol/response/pursuit), EMS, taxi
+- Adaptive speed (curves, obstacles, follow distance)
+- Basic forward “sensor” to reduce ramming
+- Waypoint driving, coordinate driving, wandering
+- Convoy / follow another player (server ID)
+- Route recording + playback + save/load
+- Pull-over + park behavior
+- HUD + debug mode
+- NPC traffic disable toggle (testing)
 
 ---
 
 ## Installation
 
 1. Download / clone this repo into your FiveM `resources` folder:
-```
 
-resources/pilot
+   ```text
+   resources/pilot
 
-```
-2. Add to `server.cfg`:
-```
+    Add to server.cfg:
 
-ensure pilot
+    ensure pilot
 
-```
-3. Restart your server or `refresh` + `ensure pilot`.
+    Restart your server (or refresh + ensure pilot).
 
----
+Quick Start
 
-## Quick Start
+    Set a waypoint on the map (recommended)
 
-- Set a waypoint on the map (recommended)
-- Run:
-- `/ap` to start
-- `/apstop` to stop instantly
+    Start: /ap
 
-Default destination is waypoint (`wp`). If you don’t have a waypoint, use `/apdest wander`.
+    Stop instantly: /apstop
 
----
+No waypoint? Use /apdest wander.
+Keybinds
 
-## Commands
+    Toggle Pilot: J
 
-### Core
-- `/ap`  
-Toggle self driving ON/OFF.
+    Stop Pilot: K
 
-- `/apstop`  
-Hard stop (kills tasks, clears lights/sirens/indicators).
+(You can rebind these in FiveM keybind settings.)
+Commands
+Core
 
-- `/appause`  
-Pause (stops driving but keeps system enabled).
+    /ap — Toggle self driving ON/OFF
 
-- `/apresume`  
-Resume driving.
+    /apstop — Hard stop (kills tasks, clears sirens/lights/indicators)
 
----
+    /appause — Pause driving
 
-### UI / Debug
-- `/apui on` | `/apui off` | `/apui`  
-Toggle the on-screen HUD.
+    /apresume — Resume driving
 
-- `/apdebug on` | `/apdebug off` | `/apdebug`  
-Toggle debug readouts.
+UI / Debug
 
----
+    /apui on | /apui off | /apui — HUD on/off
 
-### Units / Speed
-- `/apunit mph` | `/apunit kph`  
-Switch speed units.
+    /apdebug on | /apdebug off | /apdebug — Debug info on/off
 
-- `/apspeed <number>`  
-Set the target speed in the current unit.  
-Examples: `/apspeed 35`, `/apspeed 70`
+Units / Speed
 
----
+    /apunit mph | /apunit kph
 
-### Roles / Police Modes
-- `/aprole civilian`
-- `/aprole taxi`
-- `/aprole ems`
-- `/aprole police`  
-Sets the main driving role.
+    /apspeed <number> — Set target speed in current unit
+    Examples: /apspeed 35, /apspeed 70
 
-Police mode shortcut (also sets role to police):
-- `/appolice patrol`
-- `/appolice response`
-- `/appolice pursuit`
+Roles / Police Modes
 
----
+    /aprole civilian
 
-### Lane Modes
-- `/aplane strict`
-- `/aplane normal`
-- `/aplane loose`
-- `/aplane rightlane`
-- `/aplane nopass`
-- `/aplane pass_if_blocked`
-- `/aplane shoulder`
+    /aprole taxi
 
----
+    /aprole ems
 
-### Destination / Navigation
-- `/apdest wp`  
-Drive to the map waypoint.
+    /aprole police
 
-- `/apdest wander`  
-Roam roads (no waypoint required).
+Police mode (also sets role to police):
 
-- `/apdest here`  
-Set destination to your current position.
+    /appolice patrol
 
-- `/apdest clear`  
-Reset destination back to waypoint mode.
+    /appolice response
 
-- `/apgoto <x> <y> <z>`  
-Drive to an exact coordinate.  
-Example: `/apgoto 215.3 -810.2 30.7`
+    /appolice pursuit
 
----
+Lane Modes
 
-### Arrival Behavior
-- `/aparrive stop` | `/aparrive park` | `/aparrive none`  
-What to do when arriving at the destination.
+    /aplane strict
 
-- `/aparrive <radiusMeters>`  
-Set how close you must get before “arrived” triggers.  
-Examples: `/aparrive 8`, `/aparrive 20`
+    /aplane normal
 
----
+    /aplane loose
 
-### Follow / Convoy
-- `/apfollow <server_id> [distMeters]`  
-Follow another player by server ID.  
-Examples: `/apfollow 12`, `/apfollow 12 15`
+    /aplane rightlane
 
-- `/apfollowdist <meters>`  
-Set follow distance.  
-Example: `/apfollowdist 18`
+    /aplane nopass
 
----
+    /aplane pass_if_blocked
 
-### Siren / Lights / Hazards
-- `/apsiren auto` | `/apsiren on` | `/apsiren off`
-- `/aplights auto` | `/aplights on` | `/aplights off`
-- `/aphaz on` | `/aphaz off` | `/aphaz`  
-Toggle hazards.
+    /aplane shoulder
 
----
+Destination / Navigation
 
-### Pull Over / Park
-- `/appark`  
-Park immediately where you are.
+    /apdest wp — Drive to map waypoint
 
-- `/appullover [right|left] [meters]`  
-Pull to the shoulder then park (hazards on).  
-Examples: `/appullover`, `/appullover left 10`
+    /apdest wander — Roam roads
 
----
+    /apdest here — Set destination to current position
 
-### Testing / Tuning
-- `/aptraffic on` | `/aptraffic off`  
-Toggle NPC vehicle traffic (useful for testing).
+    /apdest clear — Reset destination back to waypoint mode
 
-- `/aptrackwp on` | `/aptrackwp off`  
-If ON, autopilot updates when your waypoint changes.
+    /apgoto <x> <y> <z> — Drive to a coordinate
+    Example: /apgoto 215.3 -810.2 30.7
 
-- `/apoverride stop` | `/apoverride ignore`  
-- `stop` = player throttle/steer cancels Pilot  
-- `ignore` = Pilot keeps control even if you touch controls
+Arrival Behavior
 
----
+    /aparrive stop | /aparrive park | /aparrive none
 
-### Routes (Record + Replay)
-- `/aproute add`  
-Add a route point at your current vehicle position.
+    /aparrive <radiusMeters> — Example: /aparrive 12
 
-- `/aproute clear`  
-Remove all route points.
+Follow / Convoy
 
-- `/aproute play`  
-Start driving the saved points in order.
+    /apfollow <server_id> [distMeters] — Examples: /apfollow 12, /apfollow 12 15
 
-- `/aproute stop`  
-Stop route playback.
+    /apfollowdist <meters> — Example: /apfollowdist 18
 
-- `/aproute loop on` | `/aproute loop off`  
-Loop the route.
+Siren / Lights / Hazards
 
-- `/aproute save`  
-Save route to client KVP storage.
+    /apsiren auto | /apsiren on | /apsiren off
 
-- `/aproute load`  
-Load route from client KVP storage.
+    /aplights auto | /aplights on | /aplights off
 
----
+    /aphaz on | /aphaz off | /aphaz — Toggle hazards
 
-### Help
-- `/aphelp`  
-Prints a quick command list in-game.
+Pull Over / Park
 
----
+    /appark — Park immediately
 
-## Notes / Known Limitations (Beta)
+    /appullover [right|left] [meters] — Examples: /appullover, /appullover left 10
 
-- GTA/FiveM AI driving has limits. It can still do dumb things in rare cases.
-- “Traffic light behavior” is best-effort and not perfect.
-- Some emergency features depend on the vehicle having siren/lights support.
-- Tuning varies by server handling packs and vehicle mods.
+Testing / Tuning
 
----
+    /aptraffic on | /aptraffic off — Toggle NPC vehicles (testing)
 
-## License
+    /aptrackwp on | /aptrackwp off — Repath when waypoint changes
 
-Choose a license before publishing (MIT is common). If you don’t add one, GitHub treats it as “all rights reserved.”
-```
+    /apoverride stop | /apoverride ignore — Manual input cancels Pilot or not
+
+Routes (Record + Replay)
+
+    /aproute add
+
+    /aproute clear
+
+    /aproute play
+
+    /aproute stop
+
+    /aproute loop on | /aproute loop off
+
+    /aproute save
+
+    /aproute load
+
+Help
+
+    /aphelp — Quick list in-game
