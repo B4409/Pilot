@@ -1,0 +1,55 @@
+PILOT PROPRIETARY LICENSE (CLOSED SOURCE / NO MODIFICATION)
+
+Copyright (c) 2025 Daniel Levi Woolf
+All rights reserved.
+
+IMPORTANT: This software is closed-source and proprietary. No permission is granted
+to copy, modify, publish, distribute, sublicense, sell, or create derivative works
+except as explicitly stated below.
+
+1) Definitions
+"Software" means the Pilot project, including any source code, scripts, binaries,
+DLLs, plugins, assets, documentation, and all updates or modifications provided by
+the Copyright Holder.
+"Copyright Holder" means Daniel Levi Woolf.
+
+2) Limited License Grant (Use-Only)
+Permission is granted to install and use the Software in unmodified form solely for:
+- Running Pilot on FiveM servers you own or administratively control, and
+- Personal/internal testing and evaluation.
+
+This is a non-exclusive, non-transferable, revocable license.
+
+3) Restrictions (Not Allowed)
+You may NOT, and may NOT allow others to:
+- Modify, adapt, translate, patch, or create derivative works of the Software.
+- Reverse engineer, decompile, disassemble, or attempt to derive the source,
+  underlying structure, or algorithms of any compiled components (including DLLs).
+- Redistribute, re-upload, mirror, publish, share, or provide the Software to any
+  third party, in whole or in part, whether for free or for a fee.
+- Remove, alter, or obscure any copyright, attribution, license, or proprietary notices.
+- Sell, rent, lease, sublicense, or otherwise commercialize the Software or access to it
+  without written permission from the Copyright Holder.
+
+4) Copies
+You may make a reasonable number of copies solely for backup purposes, provided all
+copyright and proprietary notices are preserved.
+
+5) Termination
+This license is automatically terminated if you violate any term. Upon termination,
+you must immediately stop using the Software and destroy all copies in your possession
+or control.
+
+6) No Warranty
+THE SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+
+7) Limitation of Liability
+TO THE MAXIMUM EXTENT PERMITTED BY LAW, IN NO EVENT SHALL THE COPYRIGHT HOLDER BE
+LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT, OR OTHERWISE, ARISING FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE
+USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+8) Reservation of Rights
+All rights not expressly granted in this license are reserved by the Copyright Holder.
